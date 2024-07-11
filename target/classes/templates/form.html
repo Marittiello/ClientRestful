@@ -1,18 +1,124 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
-	
-	<head>
-		
-	</head>
-	
-	<body>
-		<form th:action="@{client/datasFromForm}" method="post">
-			<input type="text" placeholder="Nome: " name="nome">
-			<br><br>
-			<input type="text" placeholder="Cognome: " name="cognome">
-			<br><br>
-			<button>Registra</button>
-		</form>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: grey;
+            color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+        }
+
+        .register {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-form {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .register-form input, .register-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(177, 175, 175);
+            color: #ffffff;
+            font-size: 1em;
+        }
+
+        .register-form input:focus, .register-form select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+        }
+
+        .register-form button {
+            width: 320PX;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .register-form button:hover {
+            background-color: #e65100;
+        }
+
+        .register-form a {
+            color: #ff6f61;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-form a:hover {
+            color: #e65100;
+        }
+
+        ::placeholder {
+            color: #ffffff;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="register">
+            <form class="register-form" th:action="@{client/signIn}" method="post">
+                <h2>Registration</h2>
+                <input type="text" placeholder="Username" required  name="username">
+                <input type="email" placeholder="Email" required name="email">
+                <input type="password" placeholder="Password" required name="password">
+                <input type="text" placeholder="Name" required name="name">
+                <input type="text" placeholder="Surname" required name="surname">
+                <input type="date" placeholder="Birth Date" required name="birthDate">
+                <input type="text" placeholder="Birth Place" required name="birthPlace">
+                <input type="text" placeholder="Fiscal Code" required name="FiscalCode">
+                <input type="text" placeholder="Address" required name="address">
+                <input type="text" placeholder="City" required name="city">
+                <input type="text" placeholder="Province" required name="province">
+                <input type="text" placeholder="Zip Code" required name="zipCode">
+              	<input type="text" placeholder="Gender" required name="gender">
+              <!--    <select required style="width: 320px;" name="gender">
+                    <option value="" disabled selected>Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                </select> -->
+                <button type="submit">Register</button>
+            </form>
+        	<p>Are you already registered? <a href="login">Login Here</a></p>
+        </div>
+    </div>
+
+</body>
 </html>

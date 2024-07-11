@@ -1,12 +1,160 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
-	
-	<head>
-		
-	</head>
-	
-	<body>
-		<a href="/form">Vai al form</a>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: grey; /* Colore di sfondo blu scuro */
+            color: #ffffff; /* Colore del testo chiaro */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Nascondi le barre di scorrimento */
+        }
 
+        /* Stile della navbar */
+        .navbar {
+            background-color: grey; /* Colore blu scuro */
+            height: 70px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000; /* Per essere sopra il resto del contenuto */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: grey; /* Colore blu scuro */
+        }
+
+        .navbar a:hover {
+            background-color: rgb(201, 199, 199); /* Colore blu più chiaro al passaggio */
+        }
+
+        /* Stile del contenuto principale */
+        .main-content {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+            text-align: center;
+            position: relative; /* Posizione relativa per gestire l'effetto sullo sfondo */
+        }
+
+        .text, .image {
+            flex: 1;
+            padding: 20px;
+            position: relative; /* Posizione relativa per gestire l'effetto sullo sfondo */
+            z-index: 1; /* Z-index per essere sopra l'effetto di sfondo */
+        }
+
+        .text h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #ff6f61; /* Colore rosso */
+            font-size: 3em; /* Dimensione del titolo aumentata */
+            margin-bottom: 20px;
+        }
+
+        .text p {
+            font-size: 1.2em;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Ombra più intensa */
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .image:hover img {
+            transform: scale(1.1); /* Ingrandimento dell'immagine al passaggio del mouse */
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay semitrasparente */
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image:hover .image-overlay {
+            opacity: 1; /* Mostra l'overlay al passaggio del mouse */
+        }
+
+        /* Stile del footer */
+        .footer {
+            background-color: rgb(78, 76, 76); /* Colore blu scuro */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#profile">Profile</a>
+    </div>
+
+    <!-- Contenuto principale -->
+    <div class="main-content">
+        <div class="text">
+            <h1>USER FLOW!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+            
+        </div>
+        <div class="image">
+            <img src="obrazek,79,2.jpg" alt="Codice Java">
+            <div class="image-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 user flow.</p>
+    </div>
+</body>
 </html>

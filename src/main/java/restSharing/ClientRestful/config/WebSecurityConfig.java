@@ -29,11 +29,12 @@ public class WebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/","home").permitAll()
+				.requestMatchers("/","login","form").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
 				.loginPage("/login")
+				.defaultSuccessUrl("/home")
 				.permitAll()
 			)
 			.logout((logout) -> logout.permitAll());
