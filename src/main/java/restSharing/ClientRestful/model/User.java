@@ -51,4 +51,5 @@ public class User {
 	@JsonIgnore
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	private Account account;
+	
 }

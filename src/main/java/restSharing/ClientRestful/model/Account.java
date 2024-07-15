@@ -24,6 +24,10 @@ public class Account {
 	private String password;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_user", referencedColumnName = "id")
+	@JoinColumn(name="id_user", referencedColumnName ="id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="id_role", referencedColumnName ="id")
+	private Role role;
 }
