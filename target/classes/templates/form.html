@@ -1,133 +1,423 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org">
+	<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Raleway:wght@400&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Registration Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Raleway', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: grey;
-            color: black;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
+            background-color: #f8f9fa;
         }
 
-        .container {
-            width: 80%;
-            max-width: 600px;
-			
-            background-color: white;
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #ffffff !important;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
         }
 
-        .register {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .register-form {
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .register-form input, .register-form select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgb(177, 175, 175);
-            color: #ffffff;
-            font-size: 1em;
-        }
-
-        .register-form input:focus, .register-form select:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
-        }
-
-        .register-form button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+        .btn-primary {
+            width: 30%;
+            margin-left: 35%;
             background-color: #ff6f61;
-            color: #ffffff;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            border-color: #ff6f61;
         }
 
-        .register-form button:hover {
-            background-color: #e65100;
+        .btn-primary:disabled {
+            background-color: #ff9933;
+            border-color: #ff9933;
         }
-
-        .register-form a {
-            color: #ff6f61;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .register-form a:hover {
-            color: #e65100;
-        }
-
-        ::placeholder {
-            color: #ffffff;
-            opacity: 0.7;
-        }
-		
-		
     </style>
 </head>
+
 <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ABOUT US</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
     <div class="container">
-        <div class="register">
-            <form class="register-form" th:action="@{/client/signIn}" method="post">
-                <h2>Registration</h2>
-                <input type="text" placeholder="Username" required  name="username">
-                <input type="email" placeholder="Email" required name="email">
-                <input type="password" placeholder="Password" required name="password">
-                <input type="text" placeholder="Name" required name="name">
-                <input type="text" placeholder="Surname" required name="surname">
-                <input type="date" placeholder="Birth Date" required name="birthDate">
-                <input type="text" placeholder="Birth Place" required name="birthPlace">
-                <input type="text" placeholder="Fiscal Code" required name="FiscalCode">
-                <input type="text" placeholder="Address" required name="address">
-                <input type="text" placeholder="City" required name="city">
-                <input type="text" placeholder="Province" required name="province">
-                <input type="text" placeholder="Zip Code" required name="zipCode">
-                <select required style="width: 100%;" name="gender">
-                    <option value="" disabled selected>Gender</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                    <option value="O">Other</option>
-                </select>
-				<!-- TRIGGER BUTTON -->
-				<button type="submit">Register</button>
-				
-                <p>Are you already registered? <a href="login">Login Here</a></p>
-            </form>
-			
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <h2 class="text-center"> Create your account</h2>
+                    <form id="form" th:action="@{client/signIn}" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="username">username</label>
+                                <input id="input-user" type="text" class="form-control" name="username" required>
+                                <small id="small-user"></small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name">name</label>
+                                <input id="input-name" type="text" class="form-control" name="name" required>
+                                <small id="small-name"></small>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="email">email</label>
+                                <input id="input-email" type="email" class="form-control" name="email" required>
+                                <small id="small-email"></small>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="surname">surname</label>
+                                <input id="input-surname" type="text" class="form-control" name="surname" required>
+                                <small id="small-surname"></small>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="password">password</label>
+                                <input id="input-password" type="password" class="form-control" name="password" required>
+                                <small id="small-password"></small>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="birthDate">birth date</label>
+                                <input id="input-date" type="date" class="form-control" name="birthDate" required>
+                                <small id="small-date"></small>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="birthPlace">birth place</label>
+                                <input id="input-place" type="text" class="form-control" name="birthPlace" required>
+                                <small id="small-place"></small>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address">address</label>
+                                <input id="input-address" type="text" class="form-control" name="address" required>
+                                <small id="small-address"></small>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="zipcode">zip code</label>
+                                <input id="input-zip" type="text" class="form-control" name="zipCode" required>
+                                <small id="small-zip"></small>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="city">city</label>
+                                <input id="input-city" type="text" class="form-control" name="city" required>
+                                <small id="small-city"></small>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="province">Province</label>
+                                <select id="input-province" name="province" class="form-control" required>
+                                    <option value="" selected disabled>Choose...</option>
+                                    <option value="AG">Agrigento</option>
+                                    <option value="AL">Alessandria</option>
+                                    <option value="AN">Ancona</option>
+                                    <option value="AO">Aosta</option>
+                                    <option value="AR">Arezzo</option>
+                                    <option value="AP">Ascoli Piceno</option>
+                                    <option value="AT">Asti</option>
+                                    <option value="AV">Avellino</option>
+                                    <option value="BA">Bari</option>
+                                    <option value="BT">Barletta-Andria-Trani</option>
+                                    <option value="BL">Belluno</option>
+                                    <option value="BN">Benevento</option>
+                                    <option value="BG">Bergamo</option>
+                                    <option value="BI">Biella</option>
+                                    <option value="BO">Bologna</option>
+                                    <option value="BZ">Bolzano</option>
+                                    <option value="BS">Brescia</option>
+                                    <option value="BR">Brindisi</option>
+                                    <option value="CA">Cagliari</option>
+                                    <option value="CL">Caltanissetta</option>
+                                    <option value="CB">Campobasso</option>
+                                    <option value="CI">Carbonia-Iglesias</option>
+                                    <option value="CE">Caserta</option>
+                                    <option value="CT">Catania</option>
+                                    <option value="CZ">Catanzaro</option>
+                                    <option value="CH">Chieti</option>
+                                    <option value="CO">Como</option>
+                                    <option value="CS">Cosenza</option>
+                                    <option value="CR">Cremona</option>
+                                    <option value="KR">Crotone</option>
+                                    <option value="CN">Cuneo</option>
+                                    <option value="EN">Enna</option>
+                                    <option value="FM">Fermo</option>
+                                    <option value="FE">Ferrara</option>
+                                    <option value="FI">Firenze</option>
+                                    <option value="FG">Foggia</option>
+                                    <option value="FC">Forlì-Cesena</option>
+                                    <option value="FR">Frosinone</option>
+                                    <option value="GE">Genova</option>
+                                    <option value="GO">Gorizia</option>
+                                    <option value="GR">Grosseto</option>
+                                    <option value="IM">Imperia</option>
+                                    <option value="IS">Isernia</option>
+                                    <option value="SP">La Spezia</option>
+                                    <option value="AQ">L'Aquila</option>
+                                    <option value="LT">Latina</option>
+                                    <option value="LE">Lecce</option>
+                                    <option value="LC">Lecco</option>
+                                    <option value="LI">Livorno</option>
+                                    <option value="LO">Lodi</option>
+                                    <option value="LU">Lucca</option>
+                                    <option value="MC">Macerata</option>
+                                    <option value="MN">Mantova</option>
+                                    <option value="MS">Massa-Carrara</option>
+                                    <option value="MT">Matera</option>
+                                    <option value="VS">Medio Campidano</option>
+                                    <option value="ME">Messina</option>
+                                    <option value="MI">Milano</option>
+                                    <option value="MO">Modena</option>
+                                    <option value="MB">Monza e Brianza</option>
+                                    <option value="NA">Napoli</option>
+                                    <option value="NO">Novara</option>
+                                    <option value="NU">Nuoro</option>
+                                    <option value="OT">Olbia-Tempio</option>
+                                    <option value="OR">Oristano</option>
+                                    <option value="PD">Padova</option>
+                                    <option value="PA">Palermo</option>
+                                    <option value="PR">Parma</option>
+                                    <option value="PV">Pavia</option>
+                                    <option value="PG">Perugia</option>
+                                    <option value="PU">Pesaro e Urbino</option>
+                                    <option value="PE">Pescara</option>
+                                    <option value="PC">Piacenza</option>
+                                    <option value="PI">Pisa</option>
+                                    <option value="PT">Pistoia</option>
+                                    <option value="PN">Pordenone</option>
+                                    <option value="PZ">Potenza</option>
+                                    <option value="PO">Prato</option>
+                                    <option value="RG">Ragusa</option>
+                                    <option value="RA">Ravenna</option>
+                                    <option value="RC">Reggio Calabria</option>
+                                    <option value="RE">Reggio Emilia</option>
+                                    <option value="RI">Rieti</option>
+                                    <option value="RN">Rimini</option>
+                                    <option value="RM">Roma</option>
+                                    <option value="RO">Rovigo</option>
+                                    <option value="SA">Salerno</option>
+                                    <option value="SS">Sassari</option>
+                                    <option value="SV">Savona</option>
+                                    <option value="SI">Siena</option>
+                                    <option value="SR">Siracusa</option>
+                                    <option value="SO">Sondrio</option>
+                                    <option value="TA">Taranto</option>
+                                    <option value="TE">Teramo</option>
+                                    <option value="TR">Terni</option>
+                                    <option value="TO">Torino</option>
+                                    <option value="TP">Trapani</option>
+                                    <option value="TN">Trento</option>
+                                    <option value="TV">Treviso</option>
+                                    <option value="TS">Trieste</option>
+                                    <option value="UD">Udine</option>
+                                    <option value="VA">Varese</option>
+                                    <option value="VE">Venezia</option>
+                                    <option value="VB">Verbano-Cusio-Ossola</option>
+                                    <option value="VC">Vercelli</option>
+                                    <option value="VR">Verona</option>
+                                    <option value="VV">Vibo Valentia</option>
+                                    <option value="VI">Vicenza</option>
+                                    <option value="VT">Viterbo</option>
+                                </select>
+                                <small id="small-province"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="gender">gender</label>
+                                <select id="input-gender" name="gender" class="form-control" required>
+                                    <option value="" selected disabled>Choose...</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <small id="small-gender"></small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="fiscalCode">fiscal code</label>
+                                <input id="input-cf" type="text" class="form-control" name="fiscalCode" required>
+                                <small id="small-cf"></small>
+
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="validationDate()" class="btn btn-primary btn-block">Create</button>
+                    </form>
+                    <br>
+                    <h6 class="text-center">Are you already registered? <a href="login">Login</a><h6>
+
+                </div>
+            </div>
         </div>
     </div>
 
-	
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        function validationDate() {
+          const inputUser = document.getElementById("input-user");
+          const inputEmail = document.getElementById("input-email");
+          const inputPassword = document.getElementById("input-password");
+          const inputName = document.getElementById("input-name");
+          const inputSurname = document.getElementById("input-surname");
+          const inputDate = document.getElementById("input-date");
+          const inputPlace = document.getElementById("input-place");
+          const inputCf = document.getElementById("input-cf");
+          const inputAddress = document.getElementById("input-address");
+          const inputCity = document.getElementById("input-city");
+          const inputProvince = document.getElementById("input-province");
+          const inputZip = document.getElementById("input-zip");
+          const inputGender = document.getElementById("select-gender");
+      
+          let check = true;
+      
+          // Regex patterns
+          const userPattern= /^[a-zA-Z0-9]{3,30}$/;
+          const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+          const passwordPattern = /^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,14}$/;
+          const namePattern = /^[a-zA-Z ]{3,30}$/;
+          const surnamePattern = /^[a-zA-Z ]{3,30}$/;
+          const birthDatePattern = /\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])*/;
+          const birthPlacePattern = /^[a-zA-Z ]{3,30}$/;
+          const cfPattern = /^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/;
+          const addressPattern = /^[a-zA-Z0-9 ]{3,30}$/;
+          const zipCodePattern = /^[0-9]{5}$/;
+          const cityPattern= /^[a-zA-Z ]{3,30}$/;
+          const provincePattern = /^[A-Z]{2}$/;
+      
+          // Esempio di validazione lato client
+          if (!userPattern.test(inputUser.value)) {
+            document.getElementById("small-user").textContent = 'Invalid Username format';
+            document.getElementById("small-user").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-user").textContent = '';
+          }
+      
+          if (!emailPattern.test(inputEmail.value)) {
+            document.getElementById("small-email").textContent = 'Invalid email format';
+            document.getElementById("small-email").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-email").textContent = '';
+          }
+      
+          if (!passwordPattern.test(inputPassword.value)) {
+            document.getElementById("small-password").textContent = 'Password must be at least 8 characters long and contain both letters and numbers';
+            document.getElementById("small-password").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-password").textContent = '';
+          }
+      
+          if (!namePattern.test(inputName.value)) {
+            document.getElementById("small-name").textContent = 'Invalid Name format';
+            document.getElementById("small-name").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-name").textContent = '';
+          }
+      
+          if (!surnamePattern.test(inputSurname.value)) {
+            document.getElementById("small-surname").textContent = 'Invalid Surname format';
+            document.getElementById("small-surname").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-surname").textContent = '';
+          }
+      
+          if (!birthDatePattern.test(inputDate.value)) {
+            document.getElementById("small-date").textContent = 'Invalid Birth Date format';
+            document.getElementById("small-date").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-date").textContent = '';
+          }
+          
+          if (!birthPlacePattern.test(inputPlace.value)) {
+            document.getElementById("small-place").textContent = 'Invalid Birth Place format';
+            document.getElementById("small-place").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-place").textContent = '';
+          }
+      
+          if (!cfPattern.test(inputCf.value)) {
+            document.getElementById("small-cf").textContent = 'Invalid Fiscal Code format';
+            document.getElementById("small-cf").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-cf").textContent = '';
+          }
+      
+          if (!addressPattern.test(inputAddress.value)) {
+            document.getElementById("small-address").textContent = 'Invalid Address format';
+            document.getElementById("small-address").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-address").textContent = '';
+          }
+      
+          if (!cityPattern.test(inputCity.value)) {
+            document.getElementById("small-city").textContent = 'Invalid City format';
+            document.getElementById("small-city").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-city").textContent = '';
+          }
+      
+          if (!provincePattern.test(inputProvince.value)) {
+            document.getElementById("small-province").textContent = 'Invalid Province format';
+            document.getElementById("small-province").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-province").textContent = '';
+          }
+      
+          if (!zipCodePattern.test(inputZip.value)) {
+            document.getElementById("small-zip").textContent = 'Invalid Zip Code format';
+            document.getElementById("small-zip").style.color="red";
+            check = false;
+          } else {
+            document.getElementById("small-zip").textContent = '';
+          }
+      
+          if (check) { 
+			 document.getElementById("form").submit();
+			   }
+		 };
+			       
+    </script>
 </body>
+
 </html>

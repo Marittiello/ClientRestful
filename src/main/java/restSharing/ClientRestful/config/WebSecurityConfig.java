@@ -13,10 +13,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
 import restSharing.ClientRestful.SecurityConfig.repo.RepoAccount;
 import restSharing.ClientRestful.model.Account;
+import restSharing.ClientRestful.util.EncryptionService;
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -31,14 +32,17 @@ public class WebSecurityConfig {
 	@Autowired
 	RepoAccount ra;
 
+	@Autowired
+	EncryptionService es;
+	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
 				
-				.requestMatchers("/homeAdmin").hasRole("ADMIN")
+				.requestMatchers("/homeAdmin","table").hasRole("ADMIN")
 				.requestMatchers("/home").hasRole("USER")
-				.requestMatchers("/","login","form", "client/signIn").permitAll()
+				.requestMatchers("/","login","form", "client/signIn","client/myLogout").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form 
@@ -53,21 +57,19 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
-    @SuppressWarnings("deprecation")
+
+	
 	@Bean
     UserDetailsService userDetailsService() {
 		List<UserDetails> usersAuth = new ArrayList<UserDetails>();
 		List<Account> users = ra.findAll();
-//		Role r= new Role();
 		for(Account u:users) {
-			
-//			r=u.getRole();
-			
 			//Vengono caricati tutti gli utenti registrati per
 			//autorizzarli all'accesso
-			UserDetails user = User.withDefaultPasswordEncoder()
+			UserDetails user = 
+					User.withDefaultPasswordEncoder()
 					.username(u.getUsername())
-					.password(u.getPassword())
+					.password(es.decrypt(u.getPassword()))
 					.roles(u.getRole().getRoleName())
 					.build();
 			usersAuth.add(user);
@@ -75,6 +77,6 @@ public class WebSecurityConfig {
 
 		return new InMemoryUserDetailsManager(usersAuth);
 	}
-
+	
 	
 }

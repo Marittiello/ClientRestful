@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import restSharing.ClientRestful.SecurityConfig.repo.*;
 import restSharing.ClientRestful.model.*;
+import restSharing.ClientRestful.util.EncryptionService;
 
 
 @Configuration 
@@ -17,11 +18,12 @@ public class CheckRecords {
 	@Autowired
 	RepoRole rr;
 	
+	@Autowired
+	EncryptionService es;
+	
 	@Bean
 	@Primary
-	String getDefaultUser() {
-		System.out.println("Report Check in progress");
-		
+	String getDefaultUser() {		
 		if(rr.findAll().size()==0) {
 			System.out.println("Report Check in progress");
 			Role r= new Role();
@@ -45,7 +47,7 @@ public class CheckRecords {
 		if(ra.findAll().size()==0) {
 			Account a = new Account();
 			a.setUsername("root");
-			a.setPassword("root");
+			a.setPassword(es.encrypt("root"));
 			a.setEmail("parraasa@gmail.com");
 			Role r=new Role();
 			r.setId(1);

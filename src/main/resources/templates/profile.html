@@ -1,0 +1,122 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>profile</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+<body style="width: 100%;">
+	<nav class="navbar navbar-light navbar-expand-md py-3">
+		<div class="container">
+			<h3 class="font-weight-lighter text-dark">
+				<strong><span style="color: rgb(52, 58, 64);">USER
+						PROFILE</span></strong>
+			</h3>
+			<button class="navbar-toggler" data-toggle="collapse"
+				data-target="#navcol-4"></button>
+			<div id="navcol-4"
+				class="collapse navbar-collapse flex-grow-0 order-md-first">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link active"
+						th:href="@{/home}" method="post">Home</a></li>
+				</ul>
+			</div>
+			<div class="d-none d-md-block">
+				<a class="btn btn-dark mr-2" th:href="@{/client/myLogout}"
+					type="button">Log out</a>
+			</div>
+		</div>
+	</nav>
+	<div th:if=${user.isPresent()} class="table-responsive border rounded-0"
+		style="width: 1022px; padding: 0px; position: static; display: inline; overflow: auto; transform: translate(0px);">
+		<table class="table container">
+			<thead class="thead-light border-dark align-items-center my-auto">
+				<tr class="font-weight-bold text-dark border-dark">
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">id</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">user
+						code</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">name</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">surname</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">birth
+						date</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">birth
+						place</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">fiscal
+						code</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">city</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">address</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">province</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">zip
+						code</th>
+					<th
+						class="font-weight-bold text-center text-dark border rounded-0 border-dark shadow-sm">gender</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="border rounded-0 border-dark shadow-sm">
+					<td th:text="*{user.id}"></td>
+					<td th:text="*{user.userCode}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.name}" class="font-weight-normal text-center"></td>
+					<td th:text="*{user.surname}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{#dates.format(birthDate, 'yyyy-MM-dd')}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.birthPlace}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.fiscalCode}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.city}" class="font-weight-normal text-center"></td>
+					<td th:text="*{user.address}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.province}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.zipCode}"
+						class="font-weight-normal text-center"></td>
+					<td th:text="*{user.gender}" class="font-weight-normal text-center"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div th:if=${!user.isPresent()} class="table-responsive border rounded-0"
+			style="width: 1022px; padding: 0px; position: static; display: inline; overflow: auto; transform: translate(0px);">
+			<p style="font-size: 2rem;">nessun utente trovato</p>
+	</div>
+	
+	
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
